@@ -1,2 +1,2 @@
-INSERT INTO User (id, pass, role) VALUES
+INSERT INTO User (id, password, role) VALUES
   ('varun', 'adhikari92', 'ADMIN');
