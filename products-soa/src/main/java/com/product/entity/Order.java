@@ -88,4 +88,12 @@ public class Order {
 	public void setTax(Double tax) {
 		this.tax = tax;
 	}
+
+	public List<OrderDetail> getOrderDetailList() {
+		return orderDetailList;
+	}
+
+	public void setOrderDetailList(List<OrderDetail> orderDetailList) {
+		this.orderDetailList = orderDetailList;
+	}
 }

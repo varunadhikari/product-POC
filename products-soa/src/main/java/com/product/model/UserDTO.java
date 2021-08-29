@@ -4,16 +4,16 @@ import java.util.List;
 
 public class UserDTO {
 
-	private Integer id;
+	private String id;
 	private String password;
 	private String role;
-	private List<UserDetailDTO> userDetails;
+	private UserDetailDTO userDetails;
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -33,11 +33,11 @@ public class UserDTO {
 		this.role = role;
 	}
 
-	public List<UserDetailDTO> getUserDetails() {
+	public UserDetailDTO getUserDetails() {
 		return userDetails;
 	}
 
-	public void setUserDetails(List<UserDetailDTO> userDetails) {
+	public void setUserDetails(UserDetailDTO userDetails) {
 		this.userDetails = userDetails;
 	}
 	
