@@ -1,21 +1,14 @@
 package com.product.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "PRODUCT")
 public class Product {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator="PRODUCT_SEQ", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name="PRODUCT_SEQ",sequenceName="PRODUCT_SEQ", allocationSize = 1)
 	@Column(name = "PRODUCT_ID")
 	private Integer id;
 

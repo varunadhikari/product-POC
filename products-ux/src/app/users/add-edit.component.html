@@ -19,7 +19,19 @@
     </div>
     <div class="form-row">
         <div class="form-group col">
-            <label for="id">id</label>
+            <label for="id">E-Mail</label>
+            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="id">Username</label>
             <input type="text" formControlName="id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.id.errors }" />
             <div *ngIf="submitted && f.id.errors" class="invalid-feedback">
                 <div *ngIf="f.id.errors.required">id is required</div>

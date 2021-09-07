@@ -50,11 +50,11 @@ export class AccountService {
     }
 
     getById(id: string) {
-        return this.http.get<User>(`${environment.apiUrl}/external/users/${id}`);
+        return this.http.get<User>(`${environment.apiUrl}/external/user/${id}`);
     }
 
-    update(id, params) {
-        return this.http.put(`${environment.apiUrl}/users/${id}`, params)
+    update(id ,params) {
+        return this.http.put(`${environment.apiUrl}externals/user/${id}`, params)
             .pipe(map(x => {
                 // update stored user if the logged in user updated their own record
                 if (id == this.userValue.id) {

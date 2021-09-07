@@ -1,7 +1,7 @@
 ﻿import { UserDetails } from "./user.details";
 
 export class User {
-    id: string;
+    id?: string;
     password: string;
     role: string;
     userDetails: UserDetails;

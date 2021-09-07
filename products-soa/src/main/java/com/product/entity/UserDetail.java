@@ -7,7 +7,8 @@ import javax.persistence.*;
 public class UserDetail {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator="USER_DETAIL_SEQ", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name="USER_DETAIL_SEQ",sequenceName="USER_DETAIL_SEQ", allocationSize = 1)
 	@Column(name = "USER_DETAIL_ID")
 	private Integer id;
 

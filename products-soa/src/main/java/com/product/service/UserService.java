@@ -70,4 +70,19 @@ public class UserService implements UserDetailsService{
 
 		return userRespList;
 	}
+
+    public UserDTO updateUser(UserDTO user) {
+		Optional<User> user2 = userRepository.findById(user.getId());
+		UserDTO userResponseDTO = new UserDTO();
+		if(user2.isPresent()) {
+			User userEntity = UserMapper.INSTANCE.userDTOToUser(user);
+			userEntity.setUserDetails(UserDetailMapper.INSTANCE.userDetailDTOToUserDetail(user.getUserDetails()));
+			userEntity.getUserDetails().setUser(userEntity);
+			userEntity.getUserDetails().setId(user2.get().getUserDetails().getId());
+			User respEntity = userRepository.saveAndFlush(userEntity);
+			userResponseDTO = UserMapper.INSTANCE.userToUserDTO(respEntity);
+			userResponseDTO.setUserDetails(UserDetailMapper.INSTANCE.userDetailToUserDetailDTO(respEntity.getUserDetails()));
+		}
+		return userResponseDTO;
+    }
 }

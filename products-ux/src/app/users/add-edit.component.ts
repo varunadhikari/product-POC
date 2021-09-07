@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AccountService, AlertService } from '@app/_services';
+import { User } from '@app/_models';
 
 @Component({ templateUrl: 'add-edit.component.html' })
 export class AddEditComponent implements OnInit {
@@ -12,6 +13,7 @@ export class AddEditComponent implements OnInit {
     isAddMode: boolean;
     loading = false;
     submitted = false;
+    user : User;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -34,6 +36,7 @@ export class AddEditComponent implements OnInit {
         this.form = this.formBuilder.group({
             fname: ['', Validators.required],
             lname: ['', Validators.required],
+            email: ['', Validators.required],
             id: ['', Validators.required],
             password: ['', passwordValidators]
         });
@@ -64,15 +67,25 @@ export class AddEditComponent implements OnInit {
         }
 
         this.loading = true;
+        this.user = {
+            id : this.form.value.id,
+            password : this.form.value.password,
+            role : "DISTRIBUTOR",
+            userDetails : {
+                fname : this.form.value.fname,
+                lname : this.form.value.lname,
+                email : this.form.value.email
+            }
+        }
         if (this.isAddMode) {
-            this.createUser();
+            this.createUser(this.user);
         } else {
-            this.updateUser();
+            this.updateUser(this.user);
         }
     }
 
-    private createUser() {
-        this.accountService.register(this.form.value)
+    private createUser(user : User) {
+        this.accountService.register(user)
             .pipe(first())
             .subscribe(
                 data => {
@@ -85,8 +98,8 @@ export class AddEditComponent implements OnInit {
                 });
     }
 
-    private updateUser() {
-        this.accountService.update(this.id, this.form.value)
+    private updateUser(user : User) {
+        this.accountService.update(user.id, user)
             .pipe(first())
             .subscribe(
                 data => {

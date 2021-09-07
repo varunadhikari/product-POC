@@ -9,7 +9,8 @@ import javax.persistence.*;
 public class OrderDetail {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator="ORDER_DETAIL_SEQ", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="ORDER_DETAIL_SEQ",sequenceName="ORDER_DETAIL_SEQ", allocationSize = 1)
     @Column(name = "ORDER_DETAIL_ID")
     private Integer id;
 
