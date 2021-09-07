@@ -1,6 +1,7 @@
 package com.product.service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import com.product.entity.UserDetail;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import com.product.entity.User;
 import com.product.repository.UserRepository;
+import org.springframework.util.CollectionUtils;
 
 @Service
 public class UserService implements UserDetailsService{
@@ -37,10 +39,9 @@ public class UserService implements UserDetailsService{
 		Optional<User> user = userRepository.findById(request.getUsername());
 		UserDTO userResponse = new UserDTO();
 		if(user.isPresent()){
-			Optional<UserDetail> details = userDetailRepository.findById(user.get().getId());
 			userResponse = UserMapper.INSTANCE.userToUserDTO(user.get());
-			if(details.isPresent()){
-				userResponse.setUserDetails(UserDetailMapper.INSTANCE.userDetailToUserDetailDTO(details.get()));
+			if(user.get().getUserDetails() != null){
+				userResponse.setUserDetails(UserDetailMapper.INSTANCE.userDetailToUserDetailDTO(user.get().getUserDetails()));
 			}
 		}
 		return userResponse;
@@ -48,6 +49,25 @@ public class UserService implements UserDetailsService{
 
     public UserDTO saveUser(UserDTO user) {
 		User userEntity = UserMapper.INSTANCE.userDTOToUser(user);
-		return UserMapper.INSTANCE.userToUserDTO(userRepository.save(userEntity));
+		userEntity.setUserDetails(UserDetailMapper.INSTANCE.userDetailDTOToUserDetail(user.getUserDetails()));
+		userEntity.getUserDetails().setUser(userEntity);
+		User respEntity = userRepository.saveAndFlush(userEntity);
+		UserDTO userResponseDTO = UserMapper.INSTANCE.userToUserDTO(respEntity);
+		userResponseDTO.setUserDetails(UserDetailMapper.INSTANCE.userDetailToUserDetailDTO(respEntity.getUserDetails()));
+		return userResponseDTO;
     }
+
+    public UserDTO getUserById(String id) {
+		Optional<User> user = userRepository.findById(id);
+		UserDTO userResponseDTO = UserMapper.INSTANCE.userToUserDTO(user.get());
+		userResponseDTO.setUserDetails(UserDetailMapper.INSTANCE.userDetailToUserDetailDTO(user.get().getUserDetails()));
+		return userResponseDTO;
+    }
+
+	public List<UserDTO> getUserDetailList() {
+		List<User> users = userRepository.findAll();
+		List<UserDTO> userRespList = UserMapper.INSTANCE.userListToUserDTO(users);
+
+		return userRespList;
+	}
 }

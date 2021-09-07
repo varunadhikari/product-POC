@@ -9,7 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 // used to create fake backend
-import { fakeBackendProvider } from './_helpers';
+//simport { fakeBackendProvider } from './_helpers';
 
 import { AppRoutingModule } from './app-routing.module';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
@@ -18,6 +18,8 @@ import { AlertComponent } from './_components';
 import { HomeComponent } from './home';;
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { OrderComponent } from './order/order-component';
+import { OrderSummaryComponent } from './order/ordersummary/order-summary-component';
 
 @NgModule({
     imports: [
@@ -35,14 +37,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         AppComponent,
         AlertComponent,
         HomeComponent,
-        DashboardComponent
+        DashboardComponent,
+        OrderComponent,
+        OrderSummaryComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
         // provider used to create fake backend
-        fakeBackendProvider
+        //fakeBackendProvider
     ],
     bootstrap: [AppComponent]
 })

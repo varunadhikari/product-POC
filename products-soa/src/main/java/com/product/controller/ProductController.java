@@ -13,7 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/product")
+import java.util.List;
+
+@RequestMapping({"/external/product","/api/product"})
 @RestController
 @Slf4j
 @Api("product")
@@ -32,6 +34,12 @@ public class ProductController {
     public ResponseEntity<ProductDTO> findById(@PathVariable("id") Integer id) {
         ProductDTO product = productService.findById(id);
         return ResponseEntity.ok(product);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<ProductDTO>> findAllProducts() {
+        List<ProductDTO> products = productService.findAllProducts();
+        return ResponseEntity.ok(products);
     }
 
     @DeleteMapping("/{id}")

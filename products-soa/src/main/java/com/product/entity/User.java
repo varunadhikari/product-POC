@@ -1,16 +1,13 @@
 package com.product.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "USER")
 public class User {
 
 	@Id
-	@Column(name = "ID")
+	@Column(name = "USER_ID")
 	private String id;
 
 	@Column(name = "PASSWORD")
@@ -18,6 +15,9 @@ public class User {
 
 	@Column(name = "ROLE")
 	private String role;
+
+	@OneToOne(mappedBy = "user", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	private UserDetail userDetails;
 
 	public String getId() {
 		return id;
@@ -42,5 +42,12 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
+
+	public UserDetail getUserDetails() {
+		return userDetails;
+	}
+
+	public void setUserDetails(UserDetail userDetails) {
+		this.userDetails = userDetails;
+	}
 }

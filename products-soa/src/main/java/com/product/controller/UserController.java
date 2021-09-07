@@ -7,16 +7,16 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.product.model.AuthenticationRequest;
 import com.product.service.UserService;
 import com.product.util.JwtUtil;
 
+import java.util.List;
+
 @RestController
+@RequestMapping({"/external","/api"})
 public class UserController {
 
 	@Autowired
@@ -50,6 +50,18 @@ public class UserController {
 	@PostMapping("/user")
 	public ResponseEntity<UserDTO> getUserDetails(@RequestBody AuthenticationRequest authenticationRequest) {
 		UserDTO response = userDetailsService.getUserDetails(authenticationRequest);
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/user/{id}")
+	public ResponseEntity<UserDTO> getUserById(@PathVariable("id") String id) {
+		UserDTO response = userDetailsService.getUserById(id);
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/users")
+	public ResponseEntity<List<UserDTO>> getUserDetailList() {
+		List<UserDTO> response = userDetailsService.getUserDetailList();
 		return ResponseEntity.ok(response);
 	}
 

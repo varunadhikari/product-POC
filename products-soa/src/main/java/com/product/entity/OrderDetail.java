@@ -1,76 +1,79 @@
 package com.product.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
-@Table(name="ORDER_DETAIL")
+@Table(name = "ORDER_DETAIL")
 public class OrderDetail {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "ID")
-	private Integer id;
-	
-	@Column(name = "QUANTITY")
-	private Integer quantity;
-	
-	@Column(name = "AMOUNT")
-	private Double amount;
-	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "ORDER_ID", nullable = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "ORDER_DETAIL_ID")
+    private Integer id;
+
+    @Column(name = "QUANTITY")
+    private Integer quantity;
+
+    @Column(name = "AMOUNT")
+    private Double amount;
+
+    @ManyToOne
+    @JoinColumn(name = "ORDER_ID")
     private Order order;
-	
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "PRODUCT_ID", nullable = false)
+
+    @Column(name = "PRODUCT_ID")
+    private Integer productId;
+
+    @Transient
     private Product product;
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public Integer getQuantity() {
-		return quantity;
-	}
+    public Integer getQuantity() {
+        return quantity;
+    }
 
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 
-	public Double getAmount() {
-		return amount;
-	}
+    public Double getAmount() {
+        return amount;
+    }
 
-	public void setAmount(Double amount) {
-		this.amount = amount;
-	}
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
 
-	public Order getOrder() {
-		return order;
-	}
+    public Order getOrder() {
+        return order;
+    }
 
-	public void setOrder(Order order) {
-		this.order = order;
-	}
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
-	public Product getProduct() {
-		return product;
-	}
+    public Integer getProductId() {
+        return productId;
+    }
 
-	public void setProduct(Product product) {
-		this.product = product;
-	}
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 }

@@ -5,10 +5,15 @@ import com.product.model.UserDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(uses = UserDetailMapper.class)
-public interface UserMapper {
-    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
+import java.util.List;
 
-    UserDTO userToUserDTO(User user);
-    User userDTOToUser(UserDTO dto);
+@Mapper
+public abstract class UserMapper {
+    public static final UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
+
+    public abstract UserDTO userToUserDTO(User user);
+    public abstract User userDTOToUser(UserDTO dto);
+
+    public abstract List<UserDTO> userListToUserDTO(List<User> user);
+    public abstract List<User> userDTOListToUser(List<UserDTO> dto);
 }

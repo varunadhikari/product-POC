@@ -19,7 +19,7 @@ public class Order {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "ID")
+	@Column(name = "ORDER_ID")
 	private Integer id;
 
 	@Column(name = "USER_ID")

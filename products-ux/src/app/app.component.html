@@ -1,8 +1,10 @@
 ﻿<!-- nav -->
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
     <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-        <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        <a class="nav-item nav-link" routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Products</a>
+        <a *ngIf="user.role==='ADMIN'" class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+        <a class="nav-item nav-link" routerLink="/orders/{{user.id}}" routerLinkActive="active">My Orders</a>
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
     </div>
 </nav>

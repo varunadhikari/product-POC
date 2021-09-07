@@ -1,8 +1,9 @@
-﻿export class User {
+﻿import { UserDetails } from "./user.details";
+
+export class User {
     id: string;
-    username: string;
     password: string;
-    firstName: string;
-    lastName: string;
-    token: string;
+    role: string;
+    userDetails: UserDetails;
+    token? : string;
 }

@@ -16,7 +16,7 @@ public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "ID")
+	@Column(name = "PRODUCT_ID")
 	private Integer id;
 
 	@Column(name = "NAME")
@@ -33,10 +33,6 @@ public class Product {
 
 	@Column(name = "QUANTITY")
 	private Integer quantity;
-	
-	@OneToOne(mappedBy = "product", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private OrderDetail orderDetail;
 
 	public Integer getId() {
 		return id;
@@ -84,14 +80,6 @@ public class Product {
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
-	}
-
-	public OrderDetail getOrderDetail() {
-		return orderDetail;
-	}
-
-	public void setOrderDetail(OrderDetail orderDetail) {
-		this.orderDetail = orderDetail;
 	}
 
 }

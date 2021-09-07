@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -46,5 +45,10 @@ public class ProductService {
         ProductDTO data = findById(id);
         Product entity = ProductMapper.INSTANCE.dtoToEntity(productDto);
         return save(ProductMapper.INSTANCE.entityToDTO(entity));
+    }
+
+    public List<ProductDTO> findAllProducts() {
+        List<Product> products = repository.findAll();
+        return ProductMapper.INSTANCE.entityListToDTOList(products);
     }
 }

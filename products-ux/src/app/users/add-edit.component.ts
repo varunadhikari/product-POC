@@ -32,9 +32,9 @@ export class AddEditComponent implements OnInit {
         }
 
         this.form = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            username: ['', Validators.required],
+            fname: ['', Validators.required],
+            lname: ['', Validators.required],
+            id: ['', Validators.required],
             password: ['', passwordValidators]
         });
 
@@ -42,9 +42,9 @@ export class AddEditComponent implements OnInit {
             this.accountService.getById(this.id)
                 .pipe(first())
                 .subscribe(x => {
-                    this.f.firstName.setValue(x.firstName);
-                    this.f.lastName.setValue(x.lastName);
-                    this.f.username.setValue(x.username);
+                    this.f.fname.setValue(x.userDetails.fname);
+                    this.f.lname.setValue(x.userDetails.lname);
+                    this.f.id.setValue(x.id);
                 });
         }
     }

@@ -7,9 +7,13 @@ import com.product.model.UserDetailDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
-public interface UserDetailMapper {
-    UserDetailMapper INSTANCE = Mappers.getMapper(UserDetailMapper.class);
+import java.util.List;
 
-    UserDetailDTO userDetailToUserDetailDTO(UserDetail user);
+@Mapper
+public abstract class UserDetailMapper {
+    public static final UserDetailMapper INSTANCE = Mappers.getMapper(UserDetailMapper.class);
+
+   public abstract UserDetailDTO userDetailToUserDetailDTO(UserDetail user);
+   public abstract UserDetail userDetailDTOToUserDetail(UserDetailDTO user);
+
 }

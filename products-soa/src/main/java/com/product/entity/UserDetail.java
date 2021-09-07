@@ -1,17 +1,15 @@
 package com.product.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "USER_DETAIL")
 public class UserDetail {
 
 	@Id
-	@Column(name = "ID")
-	private String id;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "USER_DETAIL_ID")
+	private Integer id;
 
 	@Column(name = "FNAME")
 	private String fname;
@@ -35,17 +33,29 @@ public class UserDetail {
 	private Integer zip;
 	
 	@Column(name = "CONTACT")
-	private Integer contact;
+	private Long contact;
 	
 	@Column(name = "EMAIL")
 	private String email;
 
-	public String getId() {
+	@OneToOne
+	@JoinColumn(name = "USER_ID")
+	private User user;
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getFname() {
@@ -104,11 +114,11 @@ public class UserDetail {
 		this.zip = zip;
 	}
 
-	public Integer getContact() {
+	public Long getContact() {
 		return contact;
 	}
 
-	public void setContact(Integer contact) {
+	public void setContact(Long contact) {
 		this.contact = contact;
 	}
 

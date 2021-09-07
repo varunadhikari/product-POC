@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/order")
+import java.util.List;
+
+@RequestMapping({"/external/order","/api/order"})
 @RestController
 @Slf4j
 @Api("order")
@@ -29,6 +31,18 @@ public class OrderController {
     public ResponseEntity<OrderDTO> findById(@PathVariable("id") Integer id) {
         OrderDTO order = orderService.findById(id);
         return ResponseEntity.ok(order);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<OrderDTO>> findAllOrders() {
+        List<OrderDTO> orders = orderService.findAllOrders();
+        return ResponseEntity.ok(orders);
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<OrderDTO>> findAllOrdersByUser(@PathVariable("id") String id) {
+        List<OrderDTO> orders = orderService.findAllOrdersByUser(id);
+        return ResponseEntity.ok(orders);
     }
 
     @DeleteMapping("/{id}")

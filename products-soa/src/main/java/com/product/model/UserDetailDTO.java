@@ -10,7 +10,7 @@ public class UserDetailDTO {
 	private String city;
 	private String state;
 	private Integer zip;
-	private Integer contact;
+	private Long contact;
 	private String email;
 
 	public String getId() {
@@ -77,11 +77,11 @@ public class UserDetailDTO {
 		this.zip = zip;
 	}
 
-	public Integer getContact() {
+	public Long getContact() {
 		return contact;
 	}
 
-	public void setContact(Integer contact) {
+	public void setContact(Long contact) {
 		this.contact = contact;
 	}
 
