@@ -6,11 +6,13 @@ import { map } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
 import { User } from '@app/_models';
+import { OrderSummaryData } from '@app/_models/order.summary.data';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
     private userSubject: BehaviorSubject<User>;
     public user: Observable<User>;
+    private orderDetails: BehaviorSubject<OrderSummaryData>;
 
     constructor(
         private router: Router,
@@ -22,6 +24,18 @@ export class AccountService {
 
     public get userValue(): User {
         return this.userSubject.value;
+    }
+
+    public sendOrderDetails(data: OrderSummaryData) {
+        this.orderDetails = new BehaviorSubject<OrderSummaryData>(data);
+    }
+
+    clearMessages() {
+        this.orderDetails.next(null);
+    }
+
+    getOrderDetails(): Observable<OrderSummaryData> {
+        return this.orderDetails.asObservable();
     }
 
     login(username, password) {

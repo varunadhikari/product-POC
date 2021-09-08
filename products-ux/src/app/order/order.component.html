@@ -1,3 +1,5 @@
+<div class="container">
+<h1>Orders</h1>
 <div *ngIf="isDataLoaded">
     <div fxLayout fxLayoutAlign="center center">
         <mat-form-field fxFlex="40%">
@@ -44,3 +46,4 @@
             *matRowDef="let row; columns: displayedColumns;"
         ></tr>
       </table>      
+    </div>

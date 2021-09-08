@@ -1,5 +1,6 @@
 export interface OrderSummaryItemData{
-    sno : number;
+    sno ?: number;
+    id? :number;
     itemdesc : string;
     quantity : number;
     rate : number;

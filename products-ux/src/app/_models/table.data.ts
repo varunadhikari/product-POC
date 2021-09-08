@@ -1,7 +1,8 @@
 export interface Tabledata {
-    position: number;
+    id: number;
     name: string;
     brand: string;
     price: number;
     availablequantity: number;
+    check: boolean ;
   }
