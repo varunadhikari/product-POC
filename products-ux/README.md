@@ -7,6 +7,7 @@ NOTE: You can also start the app with the Angular CLI command ng serve --open. T
 
 ![image](https://user-images.githubusercontent.com/8012863/132482885-6abd52e0-ea34-4a5b-9b0e-0d67a3b54d61.png)
 ![image](https://user-images.githubusercontent.com/8012863/132483014-7ff24179-291e-40ba-8b6c-02d8d41f96bb.png)
+![image](https://user-images.githubusercontent.com/8012863/132841992-9ca861f5-4a46-4b27-8574-98ebcc8b8aaa.png)
 ![image](https://user-images.githubusercontent.com/8012863/132483040-4d8983d6-234a-49a6-9abb-f46310d0df71.png)
 ![image](https://user-images.githubusercontent.com/8012863/132483057-a81e3fbd-145c-4551-a442-f62d7f0cadbd.png)
 
