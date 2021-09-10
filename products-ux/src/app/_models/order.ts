@@ -1,7 +1,7 @@
 import { OrderDetail } from "./order.detail";
 
 export interface Order{
-    id : number;
+    id?  : number;
     userId: string;
     orderDate: Date;
     status : string;

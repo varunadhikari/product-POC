@@ -1,10 +1,12 @@
 INSERT INTO USER VALUES
 ('admin', 'admin', 'ADMIN'),
-('user', 'password', 'DISTRIBUTOR');
+('abhishek', 'abhishek', 'DISTRIBUTOR'),
+('ekansh', 'ekansh', 'DISTRIBUTOR');
 
 INSERT INTO User_Detail VALUES
-(991,'admin', 'Test_Admin','Test', null,null,null,null,null,null,'admin@test.com'),
-(992,'user', 'Test_Disb','Distributor', null,null,null,null,null,null,'distributor@test.com');
+(991,'admin', 'Varun','Adhikari', null,null,null,null,null,null,'vadhikari@test.com'),
+(992,'abhishek', 'Abhishek','Dhasmana', null,null,null,null,null,null,'adhasmana@test.com'),
+(993,'ekansh', 'Ekansh','Jain', null,null,null,null,null,null,'ejain@test.com');
 
 INSERT INTO PRODUCT VALUES
 (991, 'Okacet', 'Citrizine 10MG', 'CIPLA', 18.0, 450),
@@ -14,10 +16,14 @@ INSERT INTO PRODUCT VALUES
 (995, 'Digene', 'Digene', 'CIPLA', 87.5, 200);
 
 INSERT INTO ORDERS VALUES
-(991, 'admin', TIMESTAMP '2021-08-29 18:26:23.518', 'ORDERED', 2546.0, 5.0);
+(991, 'abhishek', TIMESTAMP '2021-08-29 18:26:23.518', 'ORDERED', 2546.0, 5.0),
+(992, 'ekansh', TIMESTAMP '2021-08-29 18:26:23.518', 'ORDERED', 2023.5, 5.0);
 
 INSERT INTO ORDER_DETAIL VALUES
 (991, 991, 991, 50 ,900.0),
 (992, 991, 992, 35 ,700.0),
 (993, 991, 993, 10 ,220.0),
-(994, 991, 994, 05 ,522.5);
+(994, 991, 994, 05 ,522.5),
+(995, 992, 991, 50 ,900.0),
+(996, 992, 992, 35 ,700.0),
+(997, 992, 993, 10 ,220.0);
